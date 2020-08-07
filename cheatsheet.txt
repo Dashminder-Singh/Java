@@ -17,3 +17,11 @@ git remote set-url origin <url.git> #to set/change url of your repo
 
 git pull # to fetch from remote to local repo
 
+ Generating ssh keys
+ssh-keygen -t rsa -b 4096 -C "youremail@example.com"
+cat <path to id_rsa.pub> #Add this key to your Github account
+
+git push origin master
+
+
+
