@@ -1,0 +1,48 @@
+        try
+{
+Connection myconnection;
+
+myconnection=DriverManager.getConnection(PATH+PLACE,UNAME,PASS);
+
+try
+{
+String a="select subcatname from subcategorytable where catname=?";
+PreparedStatement mystatement=myconnection.prepareStatement(a);
+mystatement.setString(1,subcatbox.getSelectedItem().toString());
+ResultSet myresult=mystatement.executeQuery();
+
+if(myresult.next())
+{
+    subcatbox.removeAllItems();
+    subcatbox.addItem("Choose subcategory now");
+    
+   
+do
+{
+subcatbox.addItem(myresult.getString("subcatname"));
+}
+while(myresult.next());
+}
+else
+{
+    JOptionPane.showMessageDialog(rootPane, "No categories exist");
+}
+
+}
+catch(Exception e)
+{
+JOptionPane.showMessageDialog(rootPane, "Error in Query " + e.getMessage());
+}
+finally
+{
+myconnection.close();
+}
+
+
+}
+catch(Exception e)
+{
+JOptionPane.showMessageDialog(rootPane, "Error in Connection " + e.getMessage());
+}
+        
+    }  

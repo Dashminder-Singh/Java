@@ -1,0 +1,50 @@
+ if(catbox.getSelectedIndex()>0)
+ {
+ try
+ {
+ Connection myconnection;
+
+ myconnection=DriverManager.getConnection(PATH+PLACE,UNAME,PASS);
+
+ try
+ {
+ String a="select * from producttable where categoryname=?";
+ PreparedStatement mystatement=myconnection.prepareStatement(a);
+ mystatement.setString(1, catbox.getSelectedItem().toString());
+
+ ResultSet myresult=mystatement.executeQuery();
+ DefaultTableModel mymodel=(DefaultTableModel) jTable1.getModel();
+ String catname,subcatname,pname,price,qty,discount;
+ if(myresult.next())
+ {
+ mymodel.setRowCount(0);
+ do
+ {
+ catname=myresult.getString("categoryname");
+ subcatname=myresult.getString("subcategoryname");
+ pname=myresult.getString("productname");
+ price=myresult.getString("price");
+ qty=myresult.getString("qty");
+ discount=myresult.getString("discount");
+ mymodel.addRow(new String[]{catname,subcatname,pname,price,qty,discount});
+ }
+ while(myresult.next());
+ }
+
+ }
+ catch(Exception e)
+ {
+ JOptionPane.showMessageDialog(rootPane, "Error in Query " + e.getMessage());
+ }
+ finally
+ {
+ myconnection.close();
+ }
+
+
+ }
+ catch(Exception e)
+ {
+ JOptionPane.showMessageDialog(rootPane, "Error in Connection " + e.getMessage());
+ }
+ }

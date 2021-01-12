@@ -1,0 +1,52 @@
+import java.util.*;
+
+public class vector
+{
+
+     public static void main(String[] args)
+     {
+       Vector obj=new Vector();
+       obj.add(10);
+       obj.add(20);
+       obj.add(30);
+       obj.add(40);
+       obj.add(50);
+       
+       int sum=0;
+       int avarage=0;
+       
+       for(int x=0;x<obj.size();x++)
+       {
+           System.out.println(obj.get(x));
+           sum=sum+Integer.parseInt(obj.get(x).toString());
+       }
+       System.out.println("sum "+sum);
+       avarage=sum/5;
+       System.out.println("avarage "+avarage);
+       obj.add(60);
+       obj.add(70);
+       sum=0;
+       avarage=0;
+        for(int x=0;x<obj.size();x++)
+       {
+           System.out.println(obj.get(x));
+           sum=sum+Integer.parseInt(obj.get(x).toString());
+       }
+        System.out.println("sum "+sum);
+       avarage=sum/7;
+       System.out.println("avarage "+avarage);
+       sum=10;
+       avarage=10;
+       for(int x=1;x<=3;x++)
+       {
+           obj.remove(obj.size()-1);
+            sum=sum+Integer.parseInt(obj.get(x).toString());
+       }
+       System.out.println("sum "+sum);
+       avarage=sum/4;
+       System.out.println("avarage "+avarage);
+       System.out.println(obj);
+       
+     }
+     
+}

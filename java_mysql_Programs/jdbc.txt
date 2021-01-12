@@ -1,0 +1,35 @@
+  try
+ {
+ Connection myconnection;
+ String path="jdbc:mysql://localhost/";
+ String place="inventorydb";
+ String uname="root";
+ String pass="";
+ myconnection=DriverManager.getConnection(path+place, uname, pass);
+ 
+ try
+ {
+ String a="insert into categorytable values(?)";
+ PreparedStatement mystatement=myconnection.prepareStatement(a);
+ mystatement.setString(1, jTextField1.getText());
+ if(mystatement.executeUpdate()>0)
+ {
+ JOptionPane.showMessageDialog(rootPane, "Saved Successfully");
+ }
+ 
+ }
+ catch(Exception e)
+ {
+ JOptionPane.showMessageDialog(rootPane, "Error in Query " + e.getMessage());
+ }
+ finally
+ {
+ myconnection.close();
+ }
+ 
+ 
+ }
+ catch(Exception e)
+ {
+ JOptionPane.showMessageDialog(rootPane, "Error in Connection " + e.getMessage());
+ }

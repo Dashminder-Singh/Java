@@ -1,0 +1,79 @@
+try
+{
+Connection myconnection;
+
+myconnection=DriverManager.getConnection(PATH+PLACE,UNAME,PASS);
+
+try
+{
+String a="select * from categorytable";
+PreparedStatement mystatement=myconnection.prepareStatement(a);
+
+ResultSet myresult=mystatement.executeQuery();
+
+if(myresult.next())
+{
+do
+{
+catbox.addItem(myresult.getString("categoryname"));
+}
+while(myresult.next());
+}
+
+}
+catch(Exception e)
+{
+JOptionPane.showMessageDialog(rootPane, "Error in Query " + e.getMessage());
+}
+finally
+{
+myconnection.close();
+}
+
+
+}
+catch(Exception e)
+{
+JOptionPane.showMessageDialog(rootPane, "Error in Connection " + e.getMessage());
+}
+
+ 
+
+===============================================
+
+ 
+
+
+try
+{
+Connection myconnection;
+
+myconnection=DriverManager.getConnection(PATH+PLACE,UNAME,PASS);
+
+try
+{
+String a="insert into subcategorytable values(?,?)";
+PreparedStatement mystatement=myconnection.prepareStatement(a);
+mystatement.setString(1, catbox.getSelectedItem().toString());
+mystatement.setString(2, subcatbox.getText());
+if(mystatement.executeUpdate()>0)
+{
+JOptionPane.showMessageDialog(rootPane, "Saved Successfully");
+}
+
+}
+catch(Exception e)
+{
+JOptionPane.showMessageDialog(rootPane, "Error in Query " + e.getMessage());
+}
+finally
+{
+myconnection.close();
+}
+
+
+}
+catch(Exception e)
+{
+JOptionPane.showMessageDialog(rootPane, "Error in Connection " + e.getMessage());
+}

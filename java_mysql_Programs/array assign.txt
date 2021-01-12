@@ -1,0 +1,37 @@
+package javaapplication25;
+import java.lang.*;
+import java.util.*;
+
+public class array
+{
+    public static void main(String[] args) 
+    {
+        Scanner obj=new Scanner(System.in);
+        int a[]=new int[5];
+        double b[]=new double[5];
+        int count=0;
+        System.out.println("Enter"+a.length+"Weight in kg");
+        System.out.println("Enetr"+b.length+"Height in feet");
+        for(int x=0;x<a.length;x++)
+        {
+            a[x]=obj.nextInt();
+            System.out.println(a[x]);
+        }
+        
+        for(int y=0;y<b.length;y++)
+        {
+           b[y]=obj.nextDouble();
+           System.out.println(b[y]);
+        }
+       for(int z=0;z<a.length;z++)
+       {
+           if(a[z]<60 && b[z]>5.5)
+           {
+               count=count+1;
+           }
+           System.out.println("Number of persons having Weight less than 60 and Height more than 5.5 is"+count);
+       }
+       
+    }
+    
+}

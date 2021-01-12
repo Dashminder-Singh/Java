@@ -1,0 +1,30 @@
+package javaapplication53;
+import java.util.*;
+
+public class array
+{
+     public static void main(String[] args)
+    {
+       Scanner obj=new Scanner(System.in);
+       int a[]=new int[10];
+       System.out.println("Enter"+a.length+"integers");
+       for(int x=0;x<a.length;x++)
+       {
+           a[x]=obj.nextInt();
+       }
+       System.out.println("Enter ten integers you want to search ");
+       int Search_integer=obj.nextInt();
+       int count=0;
+       for(int x=0;x<a.length;x++)
+       {
+           if(a[x]==Search_integer)
+           {
+               count = count+1;
+           }
+       }
+       System.out.println("Number of times the integer is found"+count);
+    }
+}
+
+           
+           

@@ -1,0 +1,118 @@
+import java.io.*;
+
+
+public class filehandling1 {
+
+ 
+ public static void main(String[] args) {
+ try 
+ {
+
+ 
+ FileInputStream file1=new FileInputStream("first.txt");
+ FileInputStream file2=new FileInputStream("second.txt");
+ 
+ FileOutputStream file4=new FileOutputStream("abc.txt");
+ SequenceInputStream file3=new SequenceInputStream(file1,file2);
+ BufferedInputStream inBuffer=new BufferedInputStream(file3);
+
+ BufferedOutputStream outBuffer=new BufferedOutputStream(file4);
+ int a;
+ while((a=inBuffer.read())!=-1)
+ {
+ System.out.print((char)a);
+ outBuffer.write((char)a);
+ }
+ inBuffer.close();
+ outBuffer.close();
+ file1.close();
+ file2.close();
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+// RandomAccessFile obj=new RandomAccessFile("fifth.txt","r");
+// //System.out.println(obj.readBoolean());
+// //System.out.println(obj.readInt());
+// //System.out.println(obj.readFloat());
+// obj.seek(9);
+// System.out.println(obj.readUTF());
+// obj.close();
+//// 
+ 
+ 
+ 
+// RandomAccessFile obj=new RandomAccessFile("fifth.txt", "rw");
+// obj.writeBoolean(true);
+// obj.writeInt(1000);
+// obj.writeFloat(444.434f);
+// obj.writeUTF("hello how are you");
+// obj.close();
+ 
+// FileOutputStream fobj=new FileOutputStream("fourth.txt");
+// DataOutputStream obj=new DataOutputStream(fobj);
+// obj.writeBoolean(true);
+// obj.writeInt(1000);
+// obj.writeFloat(444.434f);
+// obj.writeUTF("hello how are you");
+// obj.close();
+// 
+ 
+ 
+ 
+ 
+ 
+ 
+// FileReader obj=new FileReader("third.txt");
+// 
+// int a;
+// while((a=obj.read())!=-1)
+// {
+// System.out.print((char)a);
+// }
+// obj.close();
+ 
+ 
+ 
+// FileWriter obj=new FileWriter("third.txt"); 
+// obj.write("Hello how are you");
+// obj.close();
+
+// FileInputStream obj=new FileInputStream("first.txt");
+// FileOutputStream obj2=new FileOutputStream("second.txt");
+// int a;
+// while((a=obj.read())!=-1)
+// {
+// obj2.write(a);
+// }
+// obj2.close();
+// obj.close();
+// FileInputStream obj=new FileInputStream("first.txt");
+// int a;
+// while((a=obj.read())!=-1)
+// {
+// System.out.print((char)a);
+// }
+// obj.close();
+// FileOutputStream obj=new FileOutputStream("first.txt");
+// byte data[]={'H','i'};
+// obj.write(data);
+// obj.close();
+ 
+ } 
+ catch (Exception ex)
+ {
+ System.out.println("File cannot be created");
+ }
+ }
+ 
+}

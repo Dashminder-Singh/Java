@@ -1,0 +1,136 @@
+// Login Coding
+ 
+ try
+ {
+ Connection myconnection;
+ 
+ myconnection=DriverManager.getConnection(PATH+PLACE,UNAME,PASS);
+ 
+ try
+ {
+ String a="select * from usertable where username=? and password=?";
+ PreparedStatement mystatement=myconnection.prepareStatement(a);
+ mystatement.setString(1, namebox.getText());
+ mystatement.setString(2, passwordbox.getText());
+ ResultSet myresult=mystatement.executeQuery();
+ 
+ if(myresult.next())
+ {
+ MainFrame obj=new MainFrame();
+ obj.setExtendedState(MAXIMIZED_BOTH);
+ obj.setVisible(true);
+ this.dispose();
+ }
+ else
+ {
+ JOptionPane.showMessageDialog(rootPane, "Wrong username/password");
+ }
+ 
+ }
+ catch(Exception e)
+ {
+ JOptionPane.showMessageDialog(rootPane, "Error in Query " + e.getMessage());
+ }
+ finally
+ {
+ myconnection.close();
+ }
+ 
+ 
+ }
+ catch(Exception e)
+ {
+ JOptionPane.showMessageDialog(rootPane, "Error in Connection " + e.getMessage());
+ }
+
+=======================================
+
+//Create Admin Coding
+
+try
+ {
+ Connection myconnection;
+ 
+ myconnection=DriverManager.getConnection(PATH+PLACE,UNAME,PASS);
+ 
+ try
+ {
+ String a="insert into usertable values(?,?,?)";
+ PreparedStatement mystatement=myconnection.prepareStatement(a);
+ mystatement.setString(1, namebox.getText());
+ mystatement.setString(2, passwordbox.getText());
+ mystatement.setString(3, "Admin");
+ 
+ if(mystatement.executeUpdate()>0)
+ {
+ JOptionPane.showMessageDialog(rootPane, "Admin Account created Successfully");
+ MainFrame obj=new MainFrame();
+ obj.setVisible(true);
+ this.dispose();
+ namebox.setText(""); 
+ }
+ 
+ }
+ catch(Exception e)
+ {
+ JOptionPane.showMessageDialog(rootPane, "Error in Query " + e.getMessage());
+ }
+ finally
+ {
+ myconnection.close();
+ }
+ 
+ 
+ }
+ catch(Exception e)
+ {
+ JOptionPane.showMessageDialog(rootPane, "Error in Connection " + e.getMessage());
+ } 
+ 
+ ==========================================================
+
+// Main Class Coding
+
+ try
+ {
+ Connection myconnection;
+ 
+ myconnection=DriverManager.getConnection(PATH+PLACE,UNAME,PASS);
+ 
+ try
+ {
+ String a="select * from usertable";
+ PreparedStatement mystatement=myconnection.prepareStatement(a);
+ 
+ ResultSet myresult=mystatement.executeQuery();
+ 
+ if(myresult.next())
+ {
+ Login obj=new Login();
+ obj.setVisible(true);
+ 
+ }
+ else
+ {
+ JOptionPane.showMessageDialog(null, "Running Software for first time, create Admin Account first");
+ create_admin obj=new create_admin();
+ obj.setVisible(true);
+ 
+ }
+ 
+ }
+ catch(Exception e)
+ {
+ JOptionPane.showMessageDialog(null, "Error in Query " + e.getMessage());
+ }
+ finally
+ {
+ myconnection.close();
+ }
+ 
+ 
+ }
+ catch(Exception e)
+ {
+ JOptionPane.showMessageDialog(null, "Error in Connection " + e.getMessage());
+ }

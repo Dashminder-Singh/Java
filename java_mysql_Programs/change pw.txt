@@ -1,0 +1,42 @@
+try
+ {
+ Connection myconn = DriverManager.getConnection(myurl, dbuser, dbpass);
+ try
+ {
+ if(jPasswordField2.getText().equals(jPasswordField3.getText()))
+ {
+ String q="update manageuser set password=? where username=? and password=?";
+
+ PreparedStatement myst = myconn.prepareStatement(q);
+ myst.setString(1, jPasswordField2.getText());
+ myst.setString(2, MainFrame.uname);
+ myst.setString(3, jPasswordField1.getText());
+ int res = myst.executeUpdate();
+ if(res==1)
+ {
+ JOptionPane.showMessageDialog(rootPane, "Password changed successfully");
+ }
+ else
+ {
+ JOptionPane.showMessageDialog(rootPane, "Current Password Incorrect");
+ }
+ }
+ else
+ {
+ JOptionPane.showMessageDialog(rootPane, "New Password does not match");
+ }
+ 
+ }
+ catch(Exception e)
+ {
+ JOptionPane.showMessageDialog(rootPane, "Error " + e.getMessage());
+ }
+ finally
+ {
+ myconn.close();
+ }
+ }
+ catch(Exception e)
+ {
+ JOptionPane.showMessageDialog(rootPane, "Error in connection " + e.getMessage());
+ }

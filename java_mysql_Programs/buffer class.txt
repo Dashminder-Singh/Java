@@ -1,0 +1,25 @@
+import java.lang.*;
+import java.util.*;
+
+public class buffer 
+{ 
+    public static void main(String[] args)
+    {
+        Scanner obj=new Scanner(System.in);
+        System.out.println("Enter your name");
+        StringBuilder name=new StringBuilder(obj.nextLine());
+        System.out.println(name.insert(0,"welcome"));
+        System.out.println(name.append("is learning core java"));
+        name.setCharAt(34,'-');
+        System.out.println(name);
+        int lposition=name.lastIndexOf(" ");
+        String a=name.substring(lposition);
+        System.out.println(a);
+        System.out.println(name.lastIndexOf("-"));
+        System.out.println(name.toString().toLowerCase());
+        
+        
+        
+    }
+    
+}
